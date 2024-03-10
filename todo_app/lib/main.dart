@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo_app/apps/view/modules/home_module/homepage.dart';
 
-void main(List<String> args) {
-  runApp(MyApp());
+void main(List<String> args) async {
+  await Hive.initFlutter();
+  await Hive.openBox('myBox');
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,7 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
